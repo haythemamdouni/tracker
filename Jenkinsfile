@@ -34,34 +34,15 @@ pipeline {
             }
         }
 
-        stage ('nexus') {
-            steps {
-               nexusArtifactUploader artifacts: [
-                   [
-                       artifactId: 'positionsimulator', classifier: '',
-                       file: 'target/positionsimulator.war', 
-                       type: 'war'
-                   ]
-                ], 
-                credentialsId: 'admin', 
-                groupId: 'com.virtualpairprogrammers', 
-                nexusUrl: '192.168.1.101:8081', 
-                nexusVersion: 'nexus3', 
-                protocol: 'http', 
-                repository: 'http://192.168.1.101:8081/repository/tracker', 
-                version: ''
-             }
-        }
-
-
+     
         stage ("image build") {
             steps {
                 echo 'building docker image'
                 //sh 'docker login -u veteron90 -p Lespumas1 docker.io'
                 //sh "docker build -t veteron90/tracker:${commit_id} ." 
-                sh "docker build -t 192.168.1.101:8081/repository/tracker/:${commit_id} ."
+                sh "docker build -t 192.168.1.101:8081/repository/tracker:${commit_id} ."
                 //sh "docker push veteron90/tracker:${commit_id} "
-                sh "docker push 192.168.1.101:8081/repository/tracker/:${commit_id} "
+                sh "docker push 192.168.1.101:8081/repository/tracker:${commit_id} "
                 echo 'docker image built'
             }
         }
