@@ -42,7 +42,7 @@ pipeline {
                 //sh "docker build -t veteron90/tracker:${commit_id} ." 
                 sh "docker build -t  192.168.1.101:8082/repository/tracker:${commit_id} ."
                 //sh "docker push veteron90/tracker:${commit_id} "
-                sh "docker push  1192.168.1.101:8082/repository/tracker:${commit_id} "
+                sh "docker push  192.168.1.101:8082/repository/tracker:${commit_id} "
                 echo 'docker image built'
             }
         }
