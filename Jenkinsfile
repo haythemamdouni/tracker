@@ -19,7 +19,7 @@ pipeline {
                sh "mvn clean verify sonar:sonar \
                     -Dsonar.projectKey=position-similator \
                     -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=3a230c35646095f5b599a156e6b0aaee0c09b9ea"
+                    -Dsonar.login=f6fc053aa64fbabea7f6729099567aab784b0206"
                 echo 'code quality test complete'
             }
         }
