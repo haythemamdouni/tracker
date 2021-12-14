@@ -38,7 +38,7 @@ pipeline {
         stage ("image build") {
             steps {
                 echo 'building docker image'
-                sh 'docker login -u admin -p Admin123456 192.168.1.101:8081'
+                //sh 'docker login -u admin -p Admin123456 192.168.1.101:8081'
                 //sh "docker build -t veteron90/tracker:${commit_id} ." 
                 sh "docker build -t  192.168.1.101:8082/repository/tracker:${commit_id} ."
                 //sh "docker push veteron90/tracker:${commit_id} "
