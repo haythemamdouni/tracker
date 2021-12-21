@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: position-simulator
-        image: richardchesterwood/k8s-fleetman-position-simulator:release2
+        image: position-simulator:${commit_id}
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice

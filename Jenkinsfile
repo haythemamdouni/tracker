@@ -41,7 +41,7 @@ pipeline {
                 echo 'building docker image'
                 sh 'docker login -u admin -p Admin123456 192.168.1.101:8082'
                 //sh "docker build -t veteron90/tracker:${commit_id} ." 
-                sh "docker build -t  192.168.1.101:8082/repository/tracker:${commit_id} ."
+                sh "docker build -t 192.168.1.101:8082/repository/tracker:${commit_id} ."
                 //sh "docker push veteron90/tracker:${commit_id} "
                 sh "docker push  192.168.1.101:8082/repository/tracker:${commit_id} "
                 echo 'docker image built'
@@ -52,6 +52,7 @@ pipeline {
             steps {
                 echo 'Deploying in k8s'
                 sh "sed -i -r 's|richardchesterwood/k8s-fleetman-position-simulator:release2|position-simulator:${commit_id}|' workloads.yaml"
+                sh 'docker login -u admin -p Admin123456 192.168.1.101:8082'
                 sh "kubectl apply -f workloads.yaml"
                 sh "kubectl apply -f services.yaml"
                 sh "kubectl get all"
